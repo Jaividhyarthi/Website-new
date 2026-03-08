@@ -7,10 +7,434 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css">
   <style>
-    /* Fallback styles in case CSS doesn't load */
-    body { font-family: 'Quicksand', sans-serif; margin: 0; padding: 20px; background: #fdefe0; }
+    /* ===== ALL STYLES DIRECTLY IN HTML ===== */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Quicksand', sans-serif;
+      background: #fdefe0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      margin: 0;
+      padding: 16px;
+      position: relative;
+    }
+
+    /* Floating Particles */
+    .floating-particles {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .particle {
+      position: absolute;
+      background: rgba(255, 200, 150, 0.2);
+      border-radius: 50%;
+      filter: blur(8px);
+      animation: floatParticle 15s infinite ease-in-out;
+    }
+
+    @keyframes floatParticle {
+      0%, 100% { transform: translateY(0) translateX(0); }
+      50% { transform: translateY(-40px) translateX(20px); }
+    }
+
+    /* Main Storybook Container */
+    .storybook {
+      max-width: 800px;
+      width: 100%;
+      background: rgba(255, 250, 240, 0.92);
+      backdrop-filter: blur(5px);
+      border-radius: 60px 20px 60px 20px;
+      box-shadow: 0 30px 40px rgba(0,0,0,0.1), 0 0 0 3px #fff9f0, 0 0 0 6px #fbd9b4;
+      padding: 40px 30px;
+      position: relative;
+      z-index: 10;
+    }
+
+    /* Music Toggle */
+    .music-toggle {
+      position: absolute;
+      top: 15px;
+      right: 20px;
+      background: #fceae3;
+      padding: 8px 20px;
+      border-radius: 40px;
+      box-shadow: 0 4px 10px #d4a67f;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      z-index: 20;
+      border: 1px solid #ffd9b0;
+    }
+
+    .music-toggle button {
+      background: #ffe1c6;
+      border: none;
+      padding: 6px 15px;
+      border-radius: 30px;
+      cursor: pointer;
+      font-weight: 600;
+      color: #5e3a22;
+      font-family: 'Quicksand', sans-serif;
+      transition: 0.2s;
+    }
+
+    .music-toggle button:hover {
+      background: #fecb9e;
+    }
+
+    /* Pages Container */
+    .pages-container {
+      position: relative;
+      min-height: 600px;
+      width: 100%;
+      margin-top: 20px;
+    }
+
+    /* Individual Pages */
+    .page {
+      background: #fffaf2;
+      border-radius: 50px 15px 50px 15px;
+      padding: 35px 30px;
+      box-shadow: 0 8px 25px #fad6b3, inset 0 1px 10px #fff9e6;
+      border: 1px solid #fbe7cf;
+      opacity: 0;
+      position: absolute;
+      width: 100%;
+      transition: opacity 0.6s ease, transform 0.6s ease;
+      transform: rotateY(2deg) scale(0.98);
+      pointer-events: none;
+    }
+
+    .page.active-page {
+      opacity: 1;
+      transform: rotateY(0) scale(1);
+      pointer-events: all;
+      position: relative;
+    }
+
+    /* Typography */
+    h1, .title {
+      font-size: 3rem;
+      color: #754c2e;
+      text-align: center;
+      margin-bottom: 15px;
+      font-weight: 500;
+      letter-spacing: -0.5px;
+    }
+
+    .subtitle {
+      font-size: 1.4rem;
+      color: #9b6f4b;
+      text-align: center;
+      margin-bottom: 35px;
+      line-height: 1.6;
+      font-weight: 300;
+    }
+
+    .page-title {
+      font-size: 2.2rem;
+      color: #754c2e;
+      margin-bottom: 25px;
+      border-bottom: 2px dashed #fbd1b0;
+      padding-bottom: 10px;
+      font-weight: 500;
+    }
+
+    .final-title {
+      font-size: 2.8rem;
+      color: #b27d54;
+      text-align: center;
+      margin-bottom: 25px;
+    }
+
+    .story-text, .final-message {
+      font-size: 1.3rem;
+      line-height: 1.8;
+      color: #4f3a27;
+      background: #fff5e8;
+      padding: 28px;
+      border-radius: 40px 10px 40px 10px;
+      margin: 25px 0;
+      font-style: italic;
+      box-shadow: inset 0 2px 10px #ffe8d6;
+    }
+
+    .final-message {
+      background: #fff0e0;
+      font-size: 1.4rem;
+      text-align: center;
+    }
+
+    .question {
+      font-size: 1.3rem;
+      font-weight: 600;
+      color: #855e3a;
+      margin: 25px 0 15px;
+    }
+
+    /* Silhouettes */
+    .silhouette-container {
+      display: flex;
+      justify-content: center;
+      align-items: flex-end;
+      gap: 25px;
+      margin: 35px 0;
+      min-height: 200px;
+      flex-wrap: wrap;
+    }
+
+    .mother-fig {
+      width: 100px;
+      height: 190px;
+      background: #a57c5c;
+      border-radius: 120px 120px 40px 40px;
+      position: relative;
+      filter: drop-shadow(0 10px 8px #d6a67d);
+    }
+
+    .mother-fig::before {
+      content: '';
+      position: absolute;
+      width: 60px;
+      height: 60px;
+      background: #8b6142;
+      border-radius: 50%;
+      top: -28px;
+      left: 20px;
+    }
+
+    .mother-fig::after {
+      content: '';
+      position: absolute;
+      width: 38px;
+      height: 38px;
+      background: #7a5337;
+      border-radius: 50%;
+      top: -48px;
+      left: 31px;
+    }
+
+    .child-fig {
+      width: 65px;
+      height: 135px;
+      background: #b18b6b;
+      border-radius: 70px 70px 25px 25px;
+      position: relative;
+      filter: drop-shadow(0 8px 6px #d6a67d);
+    }
+
+    .child-fig::before {
+      content: '';
+      position: absolute;
+      width: 42px;
+      height: 42px;
+      background: #9f7352;
+      border-radius: 50%;
+      top: -20px;
+      left: 12px;
+    }
+
+    /* Variations */
+    .child-fig.baby { height: 80px; width: 50px; }
+    .child-fig.baby::before { width: 35px; height: 35px; top: -16px; left: 8px; }
+    
+    .child-fig.studying { height: 100px; }
+    .child-fig.grown { height: 160px; }
+    
+    .mother-fig.cooking { height: 170px; }
+
+    /* Props */
+    .table-prop {
+      width: 160px;
+      height: 18px;
+      background: #c9a787;
+      border-radius: 20px;
+      margin: 0 15px;
+      box-shadow: 0 5px 0 #a88666;
+    }
+
+    .book-prop {
+      width: 70px;
+      height: 45px;
+      background: #e5b38e;
+      border-radius: 6px;
+      box-shadow: 4px 4px 0 #c68b5e, 8px 8px 0 #a56f4a;
+    }
+
+    /* Night Scene */
+    .night-scene {
+      background: #2a1f16;
+      padding: 35px;
+      border-radius: 60px;
+      display: inline-block;
+    }
+
+    .night-scene .mother-fig {
+      background: #5d4a3a;
+    }
+    
+    .night-scene .child-fig {
+      background: #6e5542;
+    }
+
+    /* Glow Effect */
+    .glow {
+      animation: softGlow 3s infinite alternate;
+    }
+
+    @keyframes softGlow {
+      0% { filter: drop-shadow(0 0 5px #fbc7a0); }
+      100% { filter: drop-shadow(0 0 30px #feb37b); }
+    }
+
+    .strong-glow {
+      box-shadow: 0 0 40px #fdb44b;
+    }
+
+    /* Input Fields */
+    .memory-input {
+      width: 100%;
+      padding: 18px 25px;
+      border: 2px solid #fbd1b0;
+      border-radius: 60px;
+      font-family: 'Quicksand', sans-serif;
+      font-size: 1.1rem;
+      margin: 15px 0;
+      background: #fffbf5;
+      transition: 0.3s;
+    }
+
+    .memory-input:focus {
+      outline: none;
+      border-color: #f6ac77;
+      box-shadow: 0 0 0 6px #ffe4d0;
+    }
+
+    .memory-input::placeholder {
+      color: #d4b69c;
+      font-style: italic;
+    }
+
+    /* Buttons */
+    button {
+      background: #fbd6b7;
+      border: 2px solid #fef7e6;
+      padding: 18px 35px;
+      border-radius: 70px;
+      font-size: 1.2rem;
+      font-weight: 600;
+      color: #5b3e28;
+      margin: 20px 0;
+      box-shadow: 0 6px 0 #d6a981;
+      cursor: pointer;
+      transition: 0.1s linear;
+      font-family: 'Quicksand', sans-serif;
+      width: fit-content;
+      display: block;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    button:active {
+      transform: translateY(5px);
+      box-shadow: 0 1px 0 #d6a981;
+    }
+
+    .glowing-btn {
+      background: #ffdeb9;
+      box-shadow: 0 0 30px #ffba7a, 0 6px 0 #b27d54;
+      animation: btnPulse 2s infinite;
+      font-size: 1.4rem;
+      padding: 20px 40px;
+    }
+
+    @keyframes btnPulse {
+      0% { box-shadow: 0 0 20px #ffbe76, 0 6px 0 #b27d54; }
+      50% { box-shadow: 0 0 50px #ffac5c, 0 6px 0 #b27d54; }
+    }
+
+    .send-love-btn {
+      background: #fcc9a3;
+      font-size: 1.4rem;
+    }
+
+    .spotify-button {
+      background: #e8cba0;
+      border-color: #dbb282;
+      box-shadow: 0 6px 0 #b88d5a;
+    }
+
+    .spotify-button:hover {
+      background: #f0d4b0;
+    }
+
+    /* Love Animation */
+    .love-animation-container {
+      display: flex;
+      justify-content: center;
+      gap: 25px;
+      margin: 25px 0;
+      min-height: 100px;
+      flex-wrap: wrap;
+    }
+
+    .heart {
+      font-size: 3rem;
+      animation: floatHeart 2s infinite;
+      display: inline-block;
+    }
+
+    @keyframes floatHeart {
+      0%, 100% { transform: translateY(0) scale(1); }
+      50% { transform: translateY(-25px) scale(1.3); }
+    }
+
+    /* Inspiration Message */
+    .inspiration-message {
+      text-align: center;
+      font-size: 1.4rem;
+      color: #9b6f4b;
+      margin-top: 25px;
+      font-style: italic;
+    }
+
+    /* Landing Page Special */
+    .landing {
+      text-align: center;
+    }
+
+    .cover-scene {
+      background: linear-gradient(145deg, #fbe6cf, #ffe9d6);
+      border-radius: 250px 250px 100px 100px;
+      padding: 40px 20px;
+      margin: 30px 0;
+    }
+
+    /* Mobile Responsive */
+    @media (max-width: 600px) {
+      .storybook { padding: 30px 15px; }
+      h1, .title { font-size: 2.4rem; }
+      .page-title { font-size: 1.8rem; }
+      .story-text { font-size: 1.1rem; padding: 20px; }
+      button { padding: 15px 25px; font-size: 1.1rem; }
+      .music-toggle { top: 10px; right: 10px; padding: 5px 12px; }
+      .mother-fig { width: 80px; height: 150px; }
+      .child-fig { width: 55px; height: 115px; }
+    }
   </style>
 </head>
 <body>
@@ -25,119 +449,119 @@
 
     <!-- Pages Container -->
     <div class="pages-container" id="pagesContainer">
-      <!-- LANDING PAGE -->
+      <!-- LANDING PAGE (Cover) -->
       <div class="page active-page" id="page0">
         <div class="landing">
           <h1 class="title">Her Love, My Strength</h1>
-          <div class="subtitle">"To the woman who shaped my world.<br>Happy Women's Day, Amma."</div>
-          <div class="silhouette-container">
-            <div class="mother-silhouette"></div>
-            <div class="child-silhouette baby"></div>
+          <div class="subtitle">“To the woman who shaped my world.<br>Happy Women’s Day, Amma.”</div>
+          <div class="silhouette-container cover-scene glow">
+            <div class="mother-fig"></div>
+            <div class="child-fig baby"></div>
           </div>
           <button class="glowing-btn" id="openBookBtn">📖 Open My Letter To You</button>
         </div>
       </div>
 
-      <!-- PAGE 1 -->
+      <!-- PAGE 1 – My First Home -->
       <div class="page" id="page1">
         <h2 class="page-title">✧ My First Home</h2>
         <div class="silhouette-container">
-          <div class="mother-silhouette"></div>
-          <div class="child-silhouette baby"></div>
+          <div class="mother-fig"></div>
+          <div class="child-fig baby"></div>
         </div>
-        <div class="story-text">"Before I knew the world, before I knew words, before I knew right from wrong… I knew one thing. Your arms were my first home."</div>
+        <div class="story-text">“Before I knew the world, before I knew words, before I knew right from wrong… I knew one thing. Your arms were my first home.”</div>
         <div class="question">💬 What is one thing you remember about me as a baby?</div>
         <input type="text" id="q1" class="memory-input" placeholder="Type your memory here...">
         <button class="next-page-btn" data-next="2">Turn the page →</button>
       </div>
 
-      <!-- PAGE 2 -->
+      <!-- PAGE 2 – The Woman Behind My Childhood -->
       <div class="page" id="page2">
         <h2 class="page-title">✧ The Woman Behind My Childhood</h2>
-        <div class="silhouette-container cooking-scene">
-          <div class="mother-silhouette cooking"></div>
+        <div class="silhouette-container">
+          <div class="mother-fig cooking"></div>
           <div class="table-prop"></div>
-          <div class="child-silhouette studying"></div>
+          <div class="child-fig studying"></div>
         </div>
-        <div class="story-text">"You were always there. Packing lunches. Fixing uniforms. Helping with homework. But I realize now… you were doing a hundred things while making it look effortless."</div>
+        <div class="story-text">“You were always there. Packing lunches. Fixing uniforms. Helping with homework. But I realize now… you were doing a hundred things while making it look effortless.”</div>
         <div class="question">🌟 Which moment of my childhood made you feel the proudest?</div>
         <input type="text" id="q2" class="memory-input" placeholder="Share a proud memory...">
         <button class="next-page-btn" data-next="3">Turn the page →</button>
       </div>
 
-      <!-- PAGE 3 -->
+      <!-- PAGE 3 – My First Teacher -->
       <div class="page" id="page3">
         <h2 class="page-title">✧ My First Teacher</h2>
-        <div class="silhouette-container teacher-scene">
-          <div class="mother-silhouette teaching"></div>
+        <div class="silhouette-container">
+          <div class="mother-fig"></div>
           <div class="book-prop"></div>
-          <div class="child-silhouette learning"></div>
+          <div class="child-fig studying"></div>
         </div>
-        <div class="story-text">"You didn't just raise me. You taught me kindness. Patience. Strength. Some lessons were spoken. Some were simply shown."</div>
+        <div class="story-text">“You didn't just raise me. You taught me kindness. Patience. Strength. Some lessons were spoken. Some were simply shown.”</div>
         <div class="question">📘 What lesson did you always hope I would learn?</div>
         <input type="text" id="q3" class="memory-input" placeholder="The most important lesson...">
         <button class="next-page-btn" data-next="4">Turn the page →</button>
       </div>
 
-      <!-- PAGE 4 -->
+      <!-- PAGE 4 – The Silent Sacrifices -->
       <div class="page" id="page4">
         <h2 class="page-title">✧ The Silent Sacrifices</h2>
-        <div class="silhouette-container night-scene">
-          <div class="mother-silhouette night"></div>
-          <div class="child-silhouette sleeping"></div>
+        <div class="silhouette-container night-scene glow">
+          <div class="mother-fig"></div>
+          <div class="child-fig baby"></div>
         </div>
-        <div class="story-text">"There were things I didn't see. The worries. The sacrifices. The quiet strength. But today I know… your love built my life."</div>
+        <div class="story-text">“There were things I didn't see. The worries. The sacrifices. The quiet strength. But today I know… your love built my life.”</div>
         <div class="question">🌙 What was the hardest moment while raising me?</div>
         <input type="text" id="q4" class="memory-input" placeholder="Share a difficult moment...">
         <button class="next-page-btn" data-next="5">Turn the page →</button>
       </div>
 
-      <!-- PAGE 5 -->
+      <!-- PAGE 5 – Growing Up -->
       <div class="page" id="page5">
         <h2 class="page-title">✧ Growing Up</h2>
-        <div class="silhouette-container growth-scene">
-          <div class="mother-silhouette"></div>
-          <div class="child-silhouette grown"></div>
+        <div class="silhouette-container">
+          <div class="mother-fig"></div>
+          <div class="child-fig grown"></div>
         </div>
-        <div class="story-text">"You watched me grow. From small steps to big dreams. Even today… you still stand behind me."</div>
+        <div class="story-text">“You watched me grow. From small steps to big dreams. Even today… you still stand behind me.”</div>
         <div class="question">🌱 What is one dream you always had for me?</div>
         <input type="text" id="q5" class="memory-input" placeholder="Your dreams for me...">
         <button class="next-page-btn" data-next="6">Turn the page →</button>
       </div>
 
-      <!-- PAGE 6 -->
+      <!-- PAGE 6 – The Strength of a Woman -->
       <div class="page" id="page6">
         <h2 class="page-title">✧ The Strength of a Woman</h2>
         <div class="silhouette-container">
-          <div class="mother-silhouette strong glow-effect"></div>
+          <div class="mother-fig strong-glow"></div>
         </div>
-        <div class="story-text">"You are not just my mother. You are strength. Patience. Love. And every day you show me what a strong woman truly means."</div>
+        <div class="story-text">“You are not just my mother. You are strength. Patience. Love. And every day you show me what a strong woman truly means.”</div>
         <div class="question">⚡ What advice would you give me for life?</div>
         <input type="text" id="q6" class="memory-input" placeholder="Your life advice...">
         <button class="next-page-btn" data-next="7">Turn the page →</button>
       </div>
 
-      <!-- PAGE 7 -->
+      <!-- PAGE 7 – Thank You -->
       <div class="page" id="page7">
         <h2 class="page-title">✧ Thank You</h2>
-        <div class="silhouette-container sunset-scene">
-          <div class="mother-silhouette"></div>
-          <div class="child-silhouette"></div>
+        <div class="silhouette-container">
+          <div class="mother-fig"></div>
+          <div class="child-fig"></div>
         </div>
-        <div class="story-text">"Thank you for every hug. Every scolding. Every lesson. Every sacrifice. Everything I am today has your love in it."</div>
+        <div class="story-text">“Thank you for every hug. Every scolding. Every lesson. Every sacrifice. Everything I am today has your love in it.”</div>
         <div class="question">💫 If you had to describe me in three words, what would they be?</div>
         <input type="text" id="q7" class="memory-input" placeholder="Three words that describe me...">
         <button class="next-page-btn" data-next="8">Turn the page →</button>
       </div>
 
-      <!-- FINAL PAGE -->
+      <!-- FINAL PAGE – Women's Day Message -->
       <div class="page" id="page8">
         <h2 class="final-title">Amma,</h2>
-        <div class="silhouette-container final-scene">
-          <div class="mother-silhouette"></div>
-          <div class="child-silhouette"></div>
+        <div class="silhouette-container glow">
+          <div class="mother-fig"></div>
+          <div class="child-fig"></div>
         </div>
-        <div class="final-message">"Today the world celebrates women. But in my world… you have always been the greatest one. Happy Women's Day. Thank you for being my strength, my guide, and my forever home."</div>
+        <div class="final-message">“Today the world celebrates women. But in my world… you have always been the greatest one. Happy Women's Day. Thank you for being my strength, my guide, and my forever home.”</div>
         <button id="sendLoveBtn" class="send-love-btn">💌 Send My Love</button>
         <div id="loveAnimation" class="love-animation-container"></div>
         <button id="spotifySongBtn" class="spotify-button">🎧 Listen to Our Song</button>
@@ -150,6 +574,122 @@
     <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-2.mp3" type="audio/mpeg">
   </audio>
 
-  <script src="script.js"></script>
+  <script>
+    // ===== ALL JAVASCRIPT DIRECTLY IN HTML =====
+    document.addEventListener('DOMContentLoaded', function() {
+      
+      // Create floating particles
+      function createParticles() {
+        const container = document.getElementById('particles');
+        if (!container) return;
+        
+        for (let i = 0; i < 25; i++) {
+          let p = document.createElement('div');
+          p.className = 'particle';
+          let size = Math.random() * 70 + 30;
+          p.style.width = size + 'px';
+          p.style.height = size + 'px';
+          p.style.left = Math.random() * 100 + '%';
+          p.style.top = Math.random() * 100 + '%';
+          p.style.animationDelay = Math.random() * 5 + 's';
+          container.appendChild(p);
+        }
+      }
+      createParticles();
+
+      // Page navigation
+      const pages = document.querySelectorAll('.page');
+      const nextBtns = document.querySelectorAll('.next-page-btn');
+      const openBtn = document.getElementById('openBookBtn');
+      const sendBtn = document.getElementById('sendLoveBtn');
+      const spotifyBtn = document.getElementById('spotifySongBtn');
+      const musicBtn = document.getElementById('musicToggleBtn');
+      const music = document.getElementById('bgMusic');
+
+      function showPage(index) {
+        pages.forEach((p, i) => {
+          if (i === index) {
+            p.classList.add('active-page');
+          } else {
+            p.classList.remove('active-page');
+          }
+        });
+      }
+
+      // Next buttons
+      nextBtns.forEach(btn => {
+        btn.addEventListener('click', function() {
+          let next = parseInt(this.dataset.next, 10);
+          showPage(next);
+        });
+      });
+
+      // Open book
+      if (openBtn) {
+        openBtn.addEventListener('click', function() {
+          showPage(1);
+        });
+      }
+
+      // Send love animation
+      if (sendBtn) {
+        sendBtn.addEventListener('click', function() {
+          const animDiv = document.getElementById('loveAnimation');
+          if (animDiv) {
+            animDiv.innerHTML = '';
+            for (let i = 0; i < 10; i++) {
+              let heart = document.createElement('span');
+              heart.className = 'heart';
+              heart.innerHTML = i % 2 === 0 ? '❤️' : '✨';
+              heart.style.animationDelay = (i * 0.15) + 's';
+              animDiv.appendChild(heart);
+            }
+          }
+        });
+      }
+
+      // Spotify button
+      if (spotifyBtn) {
+        spotifyBtn.addEventListener('click', function() {
+          window.open('https://open.spotify.com/track/2G3RDVqTbaK13d6BaizAxa?si=uPIaHFR6Shy8MCadyXMG9Q', '_blank');
+        });
+      }
+
+      // Music toggle
+      if (musicBtn && music) {
+        music.volume = 0.2;
+        let playing = false;
+        
+        musicBtn.addEventListener('click', function() {
+          if (playing) {
+            music.pause();
+            musicBtn.textContent = '🔈 play';
+          } else {
+            music.play().catch(e => console.log('Play failed:', e));
+            musicBtn.textContent = '🎵 pause';
+          }
+          playing = !playing;
+        });
+      }
+
+      // Local storage for answers
+      for (let i = 1; i <= 7; i++) {
+        let input = document.getElementById(`q${i}`);
+        if (input) {
+          // Load saved value
+          let saved = localStorage.getItem(`memory_q${i}`);
+          if (saved) input.value = saved;
+          
+          // Save on input
+          input.addEventListener('input', function() {
+            localStorage.setItem(`memory_q${i}`, this.value);
+          });
+        }
+      }
+
+      // Start on landing page
+      showPage(0);
+    });
+  </script>
 </body>
 </html>
