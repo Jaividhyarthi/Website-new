@@ -1,0 +1,554 @@
+/* style.css - Digital Storybook for Amma */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Quicksand', sans-serif;
+  background: #fdefe0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  margin: 0;
+  padding: 16px;
+  transition: background 0.5s ease;
+  position: relative;
+  overflow-x: hidden;
+}
+
+/* Floating Particles Animation */
+.floating-particles {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.particle {
+  position: absolute;
+  background: rgba(255, 223, 186, 0.25);
+  border-radius: 50%;
+  filter: blur(10px);
+  animation: float 12s infinite ease-in-out;
+}
+
+@keyframes float {
+  0% { transform: translateY(0px) translateX(0); }
+  50% { transform: translateY(-30px) translateX(15px); }
+  100% { transform: translateY(0px) translateX(0); }
+}
+
+/* Main Storybook Container */
+.storybook {
+  max-width: 780px;
+  width: 100%;
+  background: rgba(255, 250, 240, 0.75);
+  backdrop-filter: blur(4px);
+  border-radius: 48px 24px 48px 24px;
+  box-shadow: 0 30px 40px -20px rgba(0,0,0,0.2), 0 0 0 2px #fff9f0, 0 0 0 6px #fbd9b4;
+  padding: 32px 24px;
+  position: relative;
+  z-index: 10;
+  transition: box-shadow 0.3s;
+}
+
+/* Music Toggle */
+.music-toggle {
+  position: absolute;
+  top: 16px;
+  right: 24px;
+  z-index: 15;
+  background: #fceae3;
+  padding: 8px 16px;
+  border-radius: 60px;
+  box-shadow: 0 4px 8px #eed5c0;
+  font-size: 0.9rem;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  border: 1px solid #ffd9b0;
+  color: #8b5e3c;
+}
+
+.music-toggle button {
+  background: #ffe1c6;
+  border: none;
+  border-radius: 30px;
+  padding: 6px 14px;
+  font-weight: 600;
+  color: #5e3a22;
+  cursor: pointer;
+  box-shadow: 0 2px 6px #dbb68c;
+  transition: 0.2s;
+}
+
+.music-toggle button:hover {
+  background: #fecb9e;
+  transform: scale(1.05);
+}
+
+/* Pages Container & Flip Effect */
+.pages-container {
+  position: relative;
+  min-height: 600px;
+  width: 100%;
+  margin: 16px 0 8px;
+}
+
+.page {
+  background: rgba(255, 251, 245, 0.7);
+  backdrop-filter: blur(3px);
+  border-radius: 40px 16px 40px 16px;
+  padding: 32px 24px;
+  box-shadow: 0 8px 20px #fad6b3, inset 0 1px 10px #fff9e6;
+  border: 1px solid #fbe7cf;
+  transition: opacity 0.6s ease, transform 0.6s ease;
+  opacity: 0;
+  transform: rotateY(4deg) scale(0.98);
+  position: absolute;
+  width: 100%;
+  top: 0;
+  left: 0;
+  pointer-events: none;
+}
+
+.page.active-page {
+  opacity: 1;
+  transform: rotateY(0) scale(1);
+  pointer-events: all;
+  position: relative;
+  z-index: 5;
+}
+
+/* Typography */
+h1, h2, .title, .page-title, .final-title {
+  font-weight: 500;
+  color: #754c2e;
+  letter-spacing: -0.5px;
+  margin-bottom: 16px;
+}
+
+.title {
+  font-size: 2.5rem;
+  text-align: center;
+}
+
+.page-title {
+  font-size: 1.8rem;
+  border-bottom: 2px dashed #fbd1b0;
+  padding-bottom: 8px;
+}
+
+.final-title {
+  font-size: 2.2rem;
+  text-align: center;
+  color: #b27d54;
+}
+
+.subtitle {
+  color: #9b6f4b;
+  font-size: 1.2rem;
+  font-weight: 300;
+  text-align: center;
+  margin-bottom: 24px;
+  line-height: 1.6;
+}
+
+.story-text, .final-message {
+  font-size: 1.2rem;
+  line-height: 1.7;
+  color: #4f3a27;
+  margin: 24px 0 20px;
+  background: rgba(255, 235, 215, 0.4);
+  padding: 24px;
+  border-radius: 32px 8px 32px 8px;
+  font-style: italic;
+}
+
+.final-message {
+  background: rgba(253, 225, 195, 0.6);
+  font-size: 1.3rem;
+  text-align: center;
+  border: 2px solid #fbd1b0;
+}
+
+.question {
+  font-weight: 600;
+  color: #855e3a;
+  margin: 24px 0 12px;
+  font-size: 1.2rem;
+}
+
+/* Silhouette Styles */
+.silhouette {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 20px 0 30px;
+  min-height: 160px;
+  position: relative;
+}
+
+.mother-child-base {
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.mother-fig {
+  width: 85px;
+  height: 160px;
+  background: #a57c5c;
+  border-radius: 100px 100px 30px 30px;
+  position: relative;
+  filter: drop-shadow(0 8px 6px #e8bc94);
+}
+
+.mother-fig::before {
+  content: '';
+  position: absolute;
+  width: 50px;
+  height: 50px;
+  background: #8b6142;
+  border-radius: 50%;
+  top: -22px;
+  left: 17px;
+}
+
+.mother-fig::after {
+  content: '';
+  position: absolute;
+  width: 32px;
+  height: 32px;
+  background: #7a5337;
+  border-radius: 50%;
+  top: -38px;
+  left: 26px;
+}
+
+.child-fig {
+  width: 55px;
+  height: 110px;
+  background: #b18b6b;
+  border-radius: 60px 60px 20px 20px;
+  position: relative;
+  filter: drop-shadow(0 6px 4px #e2b690);
+}
+
+.child-fig::before {
+  content: '';
+  position: absolute;
+  width: 35px;
+  height: 35px;
+  background: #9f7352;
+  border-radius: 50%;
+  top: -16px;
+  left: 10px;
+}
+
+.baby-fig {
+  height: 70px;
+  width: 45px;
+}
+
+.studying-child {
+  height: 90px;
+}
+
+.grown-child {
+  height: 140px;
+}
+
+/* Scene Specific Styles */
+.cooking-scene .table-prop {
+  width: 140px;
+  height: 15px;
+  background: #c9a787;
+  border-radius: 20px;
+  margin: 0 10px;
+  position: relative;
+  bottom: 20px;
+}
+
+.teacher-scene .book-prop {
+  width: 60px;
+  height: 40px;
+  background: #e5b38e;
+  border-radius: 6px;
+  margin: 0 8px;
+  box-shadow: 2px 2px 0 #c68b5e;
+}
+
+.night-scene {
+  background: #2a1f16;
+  border-radius: 60px;
+  padding: 30px 50px;
+  display: flex;
+  gap: 30px;
+  align-items: flex-end;
+  position: relative;
+  box-shadow: 0 0 30px #fbc49e;
+}
+
+.mother-silhouette-night {
+  width: 70px;
+  height: 130px;
+  background: #4a3629;
+  border-radius: 40px 40px 20px 20px;
+  position: relative;
+}
+
+.child-sleeping {
+  width: 50px;
+  height: 40px;
+  background: #5d4232;
+  border-radius: 60px 60px 20px 20px;
+  position: relative;
+  bottom: 0;
+}
+
+.sunset-scene {
+  position: relative;
+}
+
+.sunset-glow {
+  position: absolute;
+  width: 200px;
+  height: 100px;
+  background: radial-gradient(circle, #ffb980, transparent);
+  bottom: 0;
+  z-index: -1;
+  border-radius: 50%;
+}
+
+.golden-glow {
+  box-shadow: 0 0 40px #fdb44b;
+}
+
+.golden-heart {
+  position: absolute;
+  font-size: 3rem;
+  animation: heartbeat 1.5s infinite;
+}
+
+@keyframes heartbeat {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.2); }
+  100% { transform: scale(1); }
+}
+
+/* Glow Animation */
+.glow {
+  animation: softGlow 3s infinite alternate;
+}
+
+@keyframes softGlow {
+  0% { filter: drop-shadow(0 0 2px #fbc7a0); }
+  100% { filter: drop-shadow(0 0 20px #feb37b); }
+}
+
+/* Input Fields */
+.memory-input {
+  width: 100%;
+  padding: 16px 20px;
+  border: 2px solid #fbd1b0;
+  border-radius: 50px;
+  background: #fffbf5;
+  font-family: 'Quicksand', sans-serif;
+  font-size: 1rem;
+  color: #2e1f13;
+  outline: none;
+  transition: 0.3s;
+  margin: 8px 0 16px;
+}
+
+.memory-input:focus {
+  border-color: #f6ac77;
+  box-shadow: 0 0 0 6px #faddc4;
+}
+
+.memory-input::placeholder {
+  color: #d4b69c;
+  font-style: italic;
+}
+
+/* Buttons */
+button {
+  background: #fbd6b7;
+  border: 2px solid #fef7e6;
+  padding: 16px 32px;
+  border-radius: 60px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #5b3e28;
+  margin: 20px 0 10px;
+  box-shadow: 0 6px 0 #d6a981;
+  cursor: pointer;
+  transition: 0.1s linear;
+  font-family: 'Quicksand', sans-serif;
+  width: 100%;
+  max-width: 280px;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+button:active {
+  transform: translateY(5px);
+  box-shadow: 0 1px 0 #d6a981;
+}
+
+.next-page-btn {
+  background: #ffd9b5;
+}
+
+.glowing-btn {
+  background: #ffdeb9;
+  box-shadow: 0 0 20px #ffba7a, 0 6px 0 #b27d54;
+  animation: btnPulse 2s infinite;
+  font-size: 1.3rem;
+  max-width: 320px;
+}
+
+@keyframes btnPulse {
+  0% { box-shadow: 0 0 20px #ffbe76, 0 6px 0 #b27d54; }
+  50% { box-shadow: 0 0 40px #ffac5c, 0 6px 0 #b27d54; }
+}
+
+.send-love-btn {
+  background: #fcc9a3;
+  font-size: 1.3rem;
+  border-color: #fff0de;
+}
+
+.spotify-button {
+  background: #e8cba0;
+  border-color: #dbb282;
+  box-shadow: 0 6px 0 #b88d5a;
+  margin-top: 16px;
+}
+
+.spotify-button:hover {
+  background: #f0d4b0;
+}
+
+/* Love Animation Container */
+.love-animation-container {
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+  margin: 24px 0;
+  min-height: 80px;
+  flex-wrap: wrap;
+}
+
+.heart {
+  font-size: 2.8rem;
+  animation: heartFloat 2s infinite;
+  display: inline-block;
+}
+
+@keyframes heartFloat {
+  0% { transform: translateY(0) scale(1); opacity: 0.8; }
+  50% { transform: translateY(-20px) scale(1.3); opacity: 1; }
+  100% { transform: translateY(0) scale(1); opacity: 0.8; }
+}
+
+/* Inspiration Message */
+.inspiration-message {
+  text-align: center;
+  font-size: 1.3rem;
+  color: #9b6f4b;
+  margin-top: 24px;
+  font-weight: 500;
+  font-style: italic;
+}
+
+/* Landing Page */
+.landing {
+  text-align: center;
+}
+
+.scene-cover {
+  background: linear-gradient(145deg, #fbe6cf, #ffe9d6);
+  border-radius: 200px 200px 80px 80px;
+  padding: 40px 20px;
+}
+
+/* Mobile Responsiveness */
+@media (max-width: 560px) {
+  .storybook {
+    padding: 24px 16px;
+  }
+  
+  .title {
+    font-size: 2rem;
+  }
+  
+  .page-title {
+    font-size: 1.5rem;
+  }
+  
+  .story-text, .final-message {
+    font-size: 1rem;
+    padding: 18px;
+  }
+  
+  .question {
+    font-size: 1.1rem;
+  }
+  
+  button {
+    padding: 14px 24px;
+    font-size: 1rem;
+    max-width: 240px;
+  }
+  
+  .music-toggle {
+    top: 8px;
+    right: 12px;
+    padding: 4px 12px;
+    font-size: 0.8rem;
+  }
+  
+  .mother-fig {
+    width: 70px;
+    height: 130px;
+  }
+  
+  .child-fig {
+    width: 45px;
+    height: 90px;
+  }
+}
+
+/* Tablet Responsiveness */
+@media (min-width: 561px) and (max-width: 768px) {
+  .storybook {
+    max-width: 700px;
+  }
+  
+  .title {
+    font-size: 2.2rem;
+  }
+}
+
+/* Smooth Scrolling */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Custom Selection Color */
+::selection {
+  background: #fbd1b0;
+  color: #5b3e28;
+}

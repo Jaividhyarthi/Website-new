@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Her Love, My Strength · Digital Storybook</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="floating-particles" id="particles"></div>
+
+  <div class="storybook">
+    <!-- Music Toggle -->
+    <div class="music-toggle">
+      <span>🎵 gentle music</span>
+      <button id="musicToggleBtn">🔈 play</button>
+    </div>
+
+    <!-- Pages Container -->
+    <div class="pages-container" id="pagesContainer">
+      <!-- LANDING PAGE (Cover) -->
+      <div class="page active-page" id="page0">
+        <div class="landing">
+          <h1 class="title">Her Love, My Strength</h1>
+          <div class="subtitle">“To the woman who shaped my world.<br>Happy Women’s Day, Amma.”</div>
+          <div class="silhouette scene-cover mother-child-base glow">
+            <div class="mother-fig"></div>
+            <div class="child-fig" style="height:70px; width:40px;"></div>
+          </div>
+          <button class="glowing-btn" id="openBookBtn">📖 Open My Letter To You</button>
+        </div>
+      </div>
+
+      <!-- PAGE 1 – My First Home -->
+      <div class="page" id="page1">
+        <h2 class="page-title">✧ My First Home</h2>
+        <div class="silhouette mother-child-base">
+          <div class="mother-fig"></div>
+          <div class="child-fig baby-fig"></div>
+        </div>
+        <div class="story-text">“Before I knew the world, before I knew words, before I knew right from wrong… I knew one thing. Your arms were my first home.”</div>
+        <div class="question">💬 What is one thing you remember about me as a baby?</div>
+        <input type="text" id="q1" class="memory-input" placeholder="Type your memory here...">
+        <button class="next-page-btn" data-next="2">Turn the page →</button>
+      </div>
+
+      <!-- PAGE 2 – The Woman Behind My Childhood -->
+      <div class="page" id="page2">
+        <h2 class="page-title">✧ The Woman Behind My Childhood</h2>
+        <div class="silhouette mother-child-base cooking-scene">
+          <div class="mother-fig"></div>
+          <div class="table-prop"></div>
+          <div class="child-fig studying-child"></div>
+        </div>
+        <div class="story-text">“You were always there. Packing lunches. Fixing uniforms. Helping with homework. But I realize now… you were doing a hundred things while making it look effortless.”</div>
+        <div class="question">🌟 Which moment of my childhood made you feel the proudest?</div>
+        <input type="text" id="q2" class="memory-input" placeholder="Share a proud memory...">
+        <button class="next-page-btn" data-next="3">Turn the page →</button>
+      </div>
+
+      <!-- PAGE 3 – My First Teacher -->
+      <div class="page" id="page3">
+        <h2 class="page-title">✧ My First Teacher</h2>
+        <div class="silhouette mother-child-base teacher-scene">
+          <div class="mother-fig teaching-mother"></div>
+          <div class="book-prop"></div>
+          <div class="child-fig learning-child"></div>
+        </div>
+        <div class="story-text">“You didn't just raise me. You taught me kindness. Patience. Strength. Some lessons were spoken. Some were simply shown.”</div>
+        <div class="question">📘 What lesson did you always hope I would learn?</div>
+        <input type="text" id="q3" class="memory-input" placeholder="The most important lesson...">
+        <button class="next-page-btn" data-next="4">Turn the page →</button>
+      </div>
+
+      <!-- PAGE 4 – The Silent Sacrifices -->
+      <div class="page" id="page4">
+        <h2 class="page-title">✧ The Silent Sacrifices</h2>
+        <div class="silhouette">
+          <div class="night-scene glow">
+            <div class="mother-silhouette-night"></div>
+            <div class="child-sleeping"></div>
+          </div>
+        </div>
+        <div class="story-text">“There were things I didn't see. The worries. The sacrifices. The quiet strength. But today I know… your love built my life.”</div>
+        <div class="question">🌙 What was the hardest moment while raising me?</div>
+        <input type="text" id="q4" class="memory-input" placeholder="Share a difficult moment...">
+        <button class="next-page-btn" data-next="5">Turn the page →</button>
+      </div>
+
+      <!-- PAGE 5 – Growing Up -->
+      <div class="page" id="page5">
+        <h2 class="page-title">✧ Growing Up</h2>
+        <div class="silhouette mother-child-base growth-scene">
+          <div class="mother-fig"></div>
+          <div class="child-fig grown-child"></div>
+        </div>
+        <div class="story-text">“You watched me grow. From small steps to big dreams. Even today… you still stand behind me.”</div>
+        <div class="question">🌱 What is one dream you always had for me?</div>
+        <input type="text" id="q5" class="memory-input" placeholder="Your dreams for me...">
+        <button class="next-page-btn" data-next="6">Turn the page →</button>
+      </div>
+
+      <!-- PAGE 6 – The Strength of a Woman -->
+      <div class="page" id="page6">
+        <h2 class="page-title">✧ The Strength of a Woman</h2>
+        <div class="silhouette">
+          <div class="mother-fig strong-mother golden-glow"></div>
+        </div>
+        <div class="story-text">“You are not just my mother. You are strength. Patience. Love. And every day you show me what a strong woman truly means.”</div>
+        <div class="question">⚡ What advice would you give me for life?</div>
+        <input type="text" id="q6" class="memory-input" placeholder="Your life advice...">
+        <button class="next-page-btn" data-next="7">Turn the page →</button>
+      </div>
+
+      <!-- PAGE 7 – Thank You -->
+      <div class="page" id="page7">
+        <h2 class="page-title">✧ Thank You</h2>
+        <div class="silhouette mother-child-base sunset-scene">
+          <div class="mother-fig"></div>
+          <div class="child-fig"></div>
+          <div class="sunset-glow"></div>
+        </div>
+        <div class="story-text">“Thank you for every hug. Every scolding. Every lesson. Every sacrifice. Everything I am today has your love in it.”</div>
+        <div class="question">💫 If you had to describe me in three words, what would they be?</div>
+        <input type="text" id="q7" class="memory-input" placeholder="Three words that describe me...">
+        <button class="next-page-btn" data-next="8">Turn the page →</button>
+      </div>
+
+      <!-- FINAL PAGE – Women's Day Message -->
+      <div class="page" id="page8">
+        <h2 class="final-title">Amma,</h2>
+        <div class="silhouette mother-child-base final-scene glow">
+          <div class="mother-fig"></div>
+          <div class="child-fig"></div>
+          <div class="golden-heart"></div>
+        </div>
+        <div class="final-message">“Today the world celebrates women. But in my world… you have always been the greatest one. Happy Women's Day. Thank you for being my strength, my guide, and my forever home.”</div>
+        <button id="sendLoveBtn" class="send-love-btn">💌 Send My Love</button>
+        <div id="loveAnimation" class="love-animation-container"></div>
+        <button id="spotifySongBtn" class="spotify-button">🎧 Listen to Our Song</button>
+        <p class="inspiration-message">You are my inspiration.</p>
+      </div>
+    </div>
+  </div>
+
+  <audio id="bgMusic" loop preload="auto">
+    <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-2.mp3" type="audio/mpeg">
+  </audio>
+
+  <script src="script.js"></script>
+</body>
+</html>
